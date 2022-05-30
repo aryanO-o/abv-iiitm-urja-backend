@@ -13,7 +13,6 @@ const client = require("../config/db");
 
 exports.getParticipantsInfo = (req, res) => {
     const participant_id = req.participant_college_id;
-
     client
     .query( `SELECT * FROM participants_info WHERE college_id ='${participant_id}'`)
     .then((data) => {

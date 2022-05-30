@@ -6,15 +6,18 @@ exports.verifyToken = (req, res, next) => {
     const token = req.headers.authorization;
 
     jwt.verify(token, process.env.SECRET_KEY, (err, tokenData) => {
+        
         if (err) {
             console.log("error: " + err);
             res.status(500).send("err: "+ err);
         }
         else {
+            
             //checking if the user actually exist in the database.
             client
                 .query(`SELECT * FROM participants_auth WHERE college_id ='${tokenData.college_id}'`)
                 .then((data) => {
+                    console.log("here i am");
                     if(data.rows.length == 0) {
                         res.status(400).send("unauthorized user");
                     }
