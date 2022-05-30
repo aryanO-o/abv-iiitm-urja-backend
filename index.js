@@ -1,6 +1,19 @@
+//requring process env variables
+require('dotenv').config()
+
 // requiring the module to be loaded
 const express = require('express')
 const cors = require('cors')
+
+// importing the auth routes
+const authRoutes = require('./routes/auth');
+
+//importing the user routes
+const userRoutes = require('./routes/user');
+
+// importing the db configurations 
+const client = require('./config/db');
+const { application_name } = require('pg/lib/defaults');
 
 // initialization of the express module
 const app = express();
@@ -16,6 +29,16 @@ app.get('/', (req, res) =>{
     res.status(200).send(`Server is running no need to worry`);
 })
 
+client.connect(() => {
+    console.log("connected to the postgres database");
+})
+
+// /auth/... pe jane ke bad ye middlewares chalenge jo bhi chalane honge
+//app.use use krna he na ki app.get kyuki ab middlewares use kr rhe he.
+app.use('/auth', authRoutes);
+
+// /user/ ... pe jane ke bad ye middleware chalega
+app.use('/user', userRoutes);
 
 // start listening at the port assigned.
 app.listen(port, () => {
