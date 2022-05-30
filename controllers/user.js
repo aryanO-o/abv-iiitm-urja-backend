@@ -16,7 +16,6 @@ exports.getParticipantsInfo = (req, res) => {
     client
     .query( `SELECT * FROM participants_info WHERE college_id ='${participant_id}'`)
     .then((data) => {
-        console.log(data);
         res.send(data.rows[0]);
     })
     .catch((err) => {

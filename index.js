@@ -6,7 +6,7 @@ const express = require('express')
 const cors = require('cors')
 
 // importing the auth routes
-const authRoutes = require('./routes/auth');
+const participantsAuthRoutes = require('./routes/participantsAuth');
 
 //importing the user routes
 const userRoutes = require('./routes/user');
@@ -35,7 +35,7 @@ client.connect(() => {
 
 // /auth/... pe jane ke bad ye middlewares chalenge jo bhi chalane honge
 //app.use use krna he na ki app.get kyuki ab middlewares use kr rhe he.
-app.use('/auth', authRoutes);
+app.use('/auth', participantsAuthRoutes);
 
 // /user/ ... pe jane ke bad ye middleware chalega
 app.use('/user', userRoutes);

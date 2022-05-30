@@ -17,7 +17,6 @@ exports.verifyToken = (req, res, next) => {
             client
                 .query(`SELECT * FROM participants_auth WHERE college_id ='${tokenData.college_id}'`)
                 .then((data) => {
-                    console.log("here i am");
                     if(data.rows.length == 0) {
                         res.status(400).send("unauthorized user");
                     }
