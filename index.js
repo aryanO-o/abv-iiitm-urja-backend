@@ -12,6 +12,7 @@ const participantsAuthRoutes = require('./routes/participantsAuth');
 const participantsInfoRoutes = require('./routes/participantsInfo');
 
 const organizersAuthRoutes = require('./routes/organizersAuth')
+const organizersInfoRoutes = require('./routes/organizersInfo')
 
 // importing the db configurations 
 const client = require('./config/db');
@@ -44,6 +45,8 @@ app.use('/participants-info', participantsInfoRoutes);
 
 // /organizers-auth for authorization of organizers.
 app.use('/organizers-auth', organizersAuthRoutes);
+
+app.use('/organizers-info', organizersInfoRoutes);
 
 
 // start listening at the port assigned.
