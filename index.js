@@ -9,7 +9,9 @@ const cors = require('cors')
 const participantsAuthRoutes = require('./routes/participantsAuth');
 
 //importing the user routes
-const userRoutes = require('./routes/user');
+const participantsInfoRoutes = require('./routes/participantsInfo');
+
+const organizersAuthRoutes = require('./routes/organizersAuth')
 
 // importing the db configurations 
 const client = require('./config/db');
@@ -33,12 +35,16 @@ client.connect(() => {
     console.log("connected to the postgres database");
 })
 
-// /auth/... pe jane ke bad ye middlewares chalenge jo bhi chalane honge
+// /participants-auth/... pe jane ke bad ye middlewares chalenge jo bhi chalane honge
 //app.use use krna he na ki app.get kyuki ab middlewares use kr rhe he.
-app.use('/auth', participantsAuthRoutes);
+app.use('/participants-auth', participantsAuthRoutes);
 
-// /user/ ... pe jane ke bad ye middleware chalega
-app.use('/user', userRoutes);
+// /participants-info/ ... pe jane ke bad ye middleware chalega
+app.use('/participants-info', participantsInfoRoutes);
+
+// /organizers-auth for authorization of organizers.
+app.use('/organizers-auth', organizersAuthRoutes);
+
 
 // start listening at the port assigned.
 app.listen(port, () => {

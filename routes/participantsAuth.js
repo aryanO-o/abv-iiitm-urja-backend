@@ -5,15 +5,15 @@ const express = require('express');
 const router = express.Router(); 
 
 // getting the functions for the router middlewares form the corresponding controllers file
-const { participnatsSignIn, participnatsSignUp } = require('../controllers/ParticipantsAuth');
+const { participnatsSignIn, participnatsSignUp } = require('../controllers/participantsAuth');
 
 
 
-router.post('/participants-sign-up', participnatsSignUp)
-router.post('/participants-sign-in', participnatsSignIn)
+router.post('/sign-up', participnatsSignUp)
+router.post('/sign-in', participnatsSignIn)
 
 router.get('', (req, res)=>{
-    res.send("han bhai /auth tk aa gya.");
+    res.send("han bhai /participants_auth tk aa gya.");
     
 })
 

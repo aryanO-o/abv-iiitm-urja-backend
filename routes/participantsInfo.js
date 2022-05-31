@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getParticipantsInfo, updateParticipantsInfo, insertParticipantsInfo } = require('../controllers/user');
+const { getParticipantsInfo, updateParticipantsInfo, insertParticipantsInfo } = require('../controllers/participantsInfo');
 const { verifyToken } = require('../middlewares/authMiddlewares');
 const {getParticipnatCollegeId} = require('../middlewares/participantsInfoMiddlewares')
 
