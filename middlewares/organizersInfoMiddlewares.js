@@ -4,3 +4,8 @@ exports.getOrganizersLoginId = (req, res, next, login_id) =>
     req.organizer_login_id = login_id;
     next();
 }
+
+exports.getRole = (req, res, next, role_players_info) =>{
+    req.role_player = role_players_info;
+    next();
+}
