@@ -18,7 +18,7 @@ exports.verifyToken = (req, res, next) => {
                 .query(`SELECT * FROM participants_auth WHERE college_id ='${tokenData.college_id}'`)
                 .then((data) => {
                     if(data.rows.length == 0) {
-                        res.status(400).send("unauthorized user");
+                        res.status(400).send("unauthorized participant, first sign up.");
                     }
                     else{
                         // hamne token me college_id store kr rakhi he students ki and abhi hame token se use toked data me extract kia 
@@ -56,7 +56,7 @@ exports.verifyOrganizersToken = (req, res, next) => {
                 .query(`SELECT * FROM organizers_auth WHERE login_id ='${tokenData.login_id}'`)
                 .then((data) => {
                     if(data.rows.length == 0) {
-                        res.status(400).send("unauthorized user");
+                        res.status(400).send("unauthorized organizer");
                     }
                     else{
                         // hamne token me login_id store kr rakhi he students ki and abhi hame token se use toked data me extract kia 

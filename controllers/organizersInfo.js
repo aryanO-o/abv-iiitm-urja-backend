@@ -1,5 +1,4 @@
 const client = require("../config/db");
-const { HOUSE_CAPTAIN, COORDINATOR, EVENT_COORDINATOR } = require("../utils/strings");
 
 exports.getOrganizerInfo = (req,res) => {
     client

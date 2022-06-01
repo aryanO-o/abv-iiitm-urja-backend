@@ -14,6 +14,8 @@ const participantsInfoRoutes = require('./routes/participantsInfo');
 const organizersAuthRoutes = require('./routes/organizersAuth')
 const organizersInfoRoutes = require('./routes/organizersInfo')
 
+const formsRoutes = require('./routes/forms')
+
 // importing the db configurations 
 const client = require('./config/db');
 const { application_name } = require('pg/lib/defaults');
@@ -47,6 +49,8 @@ app.use('/participants-info', participantsInfoRoutes);
 app.use('/organizers-auth', organizersAuthRoutes);
 
 app.use('/organizers-info', organizersInfoRoutes);
+
+app.use('/forms', formsRoutes);
 
 
 // start listening at the port assigned.
