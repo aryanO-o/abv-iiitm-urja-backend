@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 // requiring bcrypt to safely crypt password
 const bcrypt = require('bcrypt');
-const client = require('../config/db');
+const client = require('../config/postgreSQLdb');
 
 //exporting functions for routes folders router middlewares
 // kuch middlewares aese hote he jo next use nai krte vhi se kam kr dete he and ye aese hi middlewares he to confuse nai hona.

@@ -1,4 +1,4 @@
-const client = require("../config/db");
+const client = require("../config/postgreSQLdb");
 
 exports.getOrganizerInfo = (req,res) => {
     client

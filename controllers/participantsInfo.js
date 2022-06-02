@@ -1,4 +1,4 @@
-const client = require("../config/db");
+const client = require("../config/postgreSQLdb");
 
 // {
 //     "college_id": "bcs_2020015@iiitm.ac.in",

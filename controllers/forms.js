@@ -1,4 +1,4 @@
-const client = require("../config/db");
+const client = require("../config/postgreSQLdb");
 const { HOUSE_CAPTAIN, COORDINATOR, EVENT_COORDINATOR } = require("../utils/strings");
 
 exports.createForm = (req, res) => {
