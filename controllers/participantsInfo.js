@@ -1,4 +1,4 @@
-const client = require("../config/postgreSQLdb");
+
 
 // {
 //     "college_id": "bcs_2020015@iiitm.ac.in",
@@ -10,6 +10,8 @@ const client = require("../config/postgreSQLdb");
 //     "mobile_number_country_code": 91,
 //     "mobile_number": "8764523435"
 // }
+
+const { client } = require("../config/postgreSQLdb");
 
 exports.getParticipantsInfo = (req, res) => {
     const participant_id = req.participant_college_id;

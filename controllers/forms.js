@@ -1,5 +1,5 @@
-const client = require("../config/postgreSQLdb");
-const { HOUSE_CAPTAIN, COORDINATOR, EVENT_COORDINATOR } = require("../utils/strings");
+const { client } = require("../config/postgreSQLdb");
+
 
 exports.createForm = (req, res) => {
     // expected data from frontend

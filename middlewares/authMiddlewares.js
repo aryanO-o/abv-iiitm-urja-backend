@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const client = require('../config/postgreSQLdb');
+const { client } = require('../config/postgreSQLdb');
+
 
 exports.verifyToken = (req, res, next) => {
 
