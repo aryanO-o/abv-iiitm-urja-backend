@@ -16,6 +16,7 @@ const organizersAuthRoutes = require('./routes/organizersAuth')
 const organizersInfoRoutes = require('./routes/organizersInfo')
 const formsRoutes = require('./routes/forms')
 const messagesRoutes = require('./routes/messages')
+const eventsRoutes = require('./routes/events')
 
 // importing the db configurations 
 const {client} = require('./config/postgreSQLdb');
@@ -55,6 +56,7 @@ app.use('/organizers-auth', organizersAuthRoutes);
 app.use('/organizers-info', organizersInfoRoutes);
 app.use('/forms', formsRoutes);
 app.use('/messages', messagesRoutes);
+app.use('/events', eventsRoutes);
 
 
 // start listening at the port assigned.
