@@ -19,14 +19,34 @@ exports.verifyToken = (req, res, next) => {
                 .query(`SELECT * FROM participants_auth WHERE college_id ='${tokenData.college_id}'`)
                 .then((data) => {
                     if(data.rows.length == 0) {
-                        res.status(400).send("unauthorized participant, first sign up.");
+                        client
+                        .query(`SELECT * FROM organizers_auth WHERE login_id ='${tokenData.login_id}'`)
+                        .then((data) => {
+                            if(data.rows.length == 0) {
+                                res.status(400).send("unauthorized organizer");
+                            }
+                            else{
+                                // hamne token me login_id store kr rakhi he students ki and abhi hame token se use toked data me extract kia 
+                                // to bas ham ek req ke andar ek variable bna dete he jiski help se ham college_id use kr pae baki jgaho pe
+                                // but yaha pe ek problem ye vo ye ki supervisor coordinators vgera ko jab info chahie hogi to token me unki id store hogi
+
+                                req.sender_id = tokenData.login_id;
+
+                                next();
+                            }
+                        })
+                        .catch((err) => {
+                            res.status(500).send("database error occured: ", err)
+                        })
                     }
                     else{
                         // hamne token me college_id store kr rakhi he students ki and abhi hame token se use toked data me extract kia 
                         // to bas ham ek req ke andar ek variable bna dete he jiski help se ham college_id use kr pae baki jgaho pe
                         // but yaha pe ek problem ye vo ye ki supervisor coordinators vgera ko jab info chahie hogi to token me unki id store hogi
-
-                        req.sender_id = tokenData.college_id;
+                        if(tokenData.college_id != undefined)
+                            req.sender_id = tokenData.college_id;
+                        else
+                            req.sender_id = tokenData.login_id;
 
                         next();
                     }

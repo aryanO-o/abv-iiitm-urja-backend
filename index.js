@@ -9,16 +9,13 @@ const cors = require('cors')
 // requiring function to start mongodb connection
 const connectMongo = require('./config/mongodb');
 
-// importing the auth routes
+// importing the routes
 const participantsAuthRoutes = require('./routes/participantsAuth');
-
-//importing the user routes
 const participantsInfoRoutes = require('./routes/participantsInfo');
-
 const organizersAuthRoutes = require('./routes/organizersAuth')
 const organizersInfoRoutes = require('./routes/organizersInfo')
-
 const formsRoutes = require('./routes/forms')
+const messagesRoutes = require('./routes/messages')
 
 // importing the db configurations 
 const {client} = require('./config/postgreSQLdb');
@@ -50,19 +47,14 @@ connectMongo();
 
 
 
-// /participants-auth/... pe jane ke bad ye middlewares chalenge jo bhi chalane honge
+// /____fill_in___/... pe jane ke bad ye middlewares chalenge jo bhi chalane honge
 //app.use use krna he na ki app.get kyuki ab middlewares use kr rhe he.
 app.use('/participants-auth', participantsAuthRoutes);
-
-// /participants-info/ ... pe jane ke bad ye middleware chalega
 app.use('/participants-info', participantsInfoRoutes);
-
-// /organizers-auth for authorization of organizers.
 app.use('/organizers-auth', organizersAuthRoutes);
-
 app.use('/organizers-info', organizersInfoRoutes);
-
 app.use('/forms', formsRoutes);
+app.use('/messages', messagesRoutes);
 
 
 // start listening at the port assigned.
