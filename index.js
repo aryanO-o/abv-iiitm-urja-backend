@@ -17,10 +17,11 @@ const organizersInfoRoutes = require('./routes/organizersInfo')
 const formsRoutes = require('./routes/forms')
 const messagesRoutes = require('./routes/messages')
 const eventsRoutes = require('./routes/events')
+const teamsRoutes = require('./routes/teams')
+const playersRoutes = require('./routes/players')
 
 // importing the db configurations 
 const {client} = require('./config/postgreSQLdb');
-const { application_name } = require('pg/lib/defaults');
 
 
 // initialization of the express module
@@ -57,6 +58,8 @@ app.use('/organizers-info', organizersInfoRoutes);
 app.use('/forms', formsRoutes);
 app.use('/messages', messagesRoutes);
 app.use('/events', eventsRoutes);
+app.use('/teams', teamsRoutes);
+app.use('/players', playersRoutes)
 
 
 // start listening at the port assigned.

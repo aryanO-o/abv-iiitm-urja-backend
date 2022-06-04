@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { client } = require('../config/postgreSQLdb');
-const { SUPERVISOR } = require('../utils/strings');
+const { SUPERVISOR, COORDINATOR, EVENT_COORDINATOR } = require('../utils/strings');
 
 
 exports.verifyToken = (req, res, next) => {
@@ -123,6 +123,74 @@ exports.verifySupervisorsToken = (req, res, next) => {
                             next();
                         else res.status(403).json({
                             message: "Only supervisors have the access to this."
+                        })
+                    }
+                })
+                .catch((err) => {
+                    res.status(500).send("database error occured: ", err)
+                })
+        }
+    })
+}
+
+exports.verifyCoordinatorsToken = (req, res, next) => {
+    const token = req.headers.authorization;
+
+    jwt.verify(token, process.env.SECRET_KEY, (err, tokenData)=>{
+        if (err) {
+            console.log("error: " + err);
+            res.status(500).send("err: "+ err);
+        }
+        else{
+            // adding role information to the req object
+            req.role = tokenData.role;
+            
+            //checking if the user actually exist in the database.
+            client
+                .query(`SELECT role FROM organizers_auth WHERE login_id ='${tokenData.login_id}'`)
+                .then((data) => {
+                    if(data.rows.length == 0) {
+                        res.status(400).send("unauthorized organizer");
+                    }
+                    else{
+                        if(data.rows[0].role === COORDINATOR)
+                            next();
+                        else res.status(403).json({
+                            message: "Only coordinator have the access to this."
+                        })
+                    }
+                })
+                .catch((err) => {
+                    res.status(500).send("database error occured: ", err)
+                })
+        }
+    })
+}
+
+exports.verifyEventCoordinatorsToken = (req, res, next) => {
+    const token = req.headers.authorization;
+
+    jwt.verify(token, process.env.SECRET_KEY, (err, tokenData)=>{
+        if (err) {
+            console.log("error: " + err);
+            res.status(500).send("err: "+ err);
+        }
+        else{
+            // adding role information to the req object
+            req.role = tokenData.role;
+            
+            //checking if the user actually exist in the database.
+            client
+                .query(`SELECT role FROM organizers_auth WHERE login_id ='${tokenData.login_id}'`)
+                .then((data) => {
+                    if(data.rows.length == 0) {
+                        res.status(400).send("unauthorized organizer");
+                    }
+                    else{
+                        if(data.rows[0].role === EVENT_COORDINATOR)
+                            next();
+                        else res.status(403).json({
+                            message: "Only event Coordinator have the access to this."
                         })
                     }
                 })
