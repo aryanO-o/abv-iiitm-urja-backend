@@ -113,22 +113,21 @@ exports.organizersSignIn = (req, res) => {
                     .then((data) => {
                         role = data.rows[0].role;
                         college_id = data.rows[0].college_id;
+
+                        var token = jwt.sign({
+                            role: `${role}`,
+                            login_id: login_id,
+                            college_id: `${college_id}`
+                        }, process.env.SECRET_KEY)
+    
+                        res.json({
+                            message: 'sign in successfully',
+                            token: token
+                        })
                     })
                     .catch((err) => {
                         res.status(500).json({message:"database error: error" + err})
                     })
-
-                    var token = jwt.sign({
-                        role: role,
-                        login_id: login_id,
-                        college_id: college_id
-                    }, process.env.SECRET_KEY)
-
-                    res.json({
-                        message: 'sign in successfully',
-                        token: token
-                    })
-
                 }
                 else {
                     res.status(200).json({message: "Enter correct password."})

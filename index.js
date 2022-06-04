@@ -19,6 +19,7 @@ const messagesRoutes = require('./routes/messages')
 const eventsRoutes = require('./routes/events')
 const teamsRoutes = require('./routes/teams')
 const playersRoutes = require('./routes/players')
+const noticesRoutes = require('./routes/noticeBoard/notices')
 
 // importing the db configurations 
 const {client} = require('./config/postgreSQLdb');
@@ -60,6 +61,7 @@ app.use('/messages', messagesRoutes);
 app.use('/events', eventsRoutes);
 app.use('/teams', teamsRoutes);
 app.use('/players', playersRoutes)
+app.use('/notices', noticesRoutes);
 
 
 // start listening at the port assigned.
