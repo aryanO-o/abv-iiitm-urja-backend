@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const noticeSchema = new mongoose.Schema(
+const NoticeSchema = new mongoose.Schema(
     {
         role: {
             type: String,
@@ -19,5 +19,5 @@ const noticeSchema = new mongoose.Schema(
     }  
 )
 
-const Notice = mongoose.model('Notice', noticeSchema);
+const Notice = mongoose.model('Notice', NoticeSchema);
 module.exports = Notice;

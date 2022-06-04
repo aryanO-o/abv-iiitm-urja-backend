@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { SUPERVISOR, HOUSE_CAPTAIN, COORDINATOR, EVENT_COORDINATOR, PARTICIPANT } = require('../utils/strings');
 
-const messageSchema =  new mongoose.Schema(
+const MessageSchema =  new mongoose.Schema(
     {
         senderId: {
             type: String,
@@ -22,5 +22,5 @@ const messageSchema =  new mongoose.Schema(
     }
 )
 
-const Message = mongoose.model('Message', messageSchema);
+const Message = mongoose.model('Message', MessageSchema);
 module.exports = Message;
