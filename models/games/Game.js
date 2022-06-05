@@ -6,8 +6,15 @@ const GameSchema = new mongoose.Schema(
     {
         gameName: String,
         gameTitle: String,
-        gameInfo: GameInfo,
-        winningTeam: String
+        winningTeam: String,
+        gameInfo: {
+            type: mongoose.Types.ObjectId,
+            ref: 'GameInfo'
+        },
+        game_id:{
+            type: mongoose.Types.ObjectId,
+            refPath: 'onModel'
+        },
     }
 )
 

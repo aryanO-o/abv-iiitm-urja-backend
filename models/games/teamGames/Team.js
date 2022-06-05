@@ -3,9 +3,10 @@ const Player = require('../Player');
 
 const TeamSchema = new mongoose.Schema(
     {
-        players: {
-            type: [Player]
-        },
+        players: [{
+            type: mongoose.Types.ObjectId,
+            ref: 'Player'
+        }],
         houseName: {
             type: String,
             required: true

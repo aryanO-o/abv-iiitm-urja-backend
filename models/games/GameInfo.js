@@ -2,13 +2,10 @@ const mongoose = require('mongoose');
 
 const GameInfoSchema = new mongoose.Schema(
     {
-        timings: {
-            type: String,
+        date_and_time: {
+            type: Date
         },
-        date: {
-            type: String,
-        },
-        scorer_college_id: {
+        scorer: {
             type: String,
         },
         referee: {

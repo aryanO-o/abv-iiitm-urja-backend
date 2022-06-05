@@ -4,22 +4,23 @@ const Basket = require('./Basket');
 
 const BasketballGameSchema = mongoose.Schema(
     {
-        game_id:{
-            type: String
-        },
-        basket: {
-            type: [Basket]
-        },
+        basket: [{
+            type: mongoose.Types.ObjectId,
+            ref: 'Basket'
+        }],
         teamA: {
-            type: Team,
+            type: mongoose.Types.ObjectId,
+            ref: 'Team',
             required: true
         },
         teamB: {
-            type: Team,
+            type: mongoose.Types.ObjectId,
+            ref: 'Team',
             required: true
         },
         winner: {
-            type: String
+            type: mongoose.Types.ObjectId,
+            ref: 'Team'
         }
     }
 )

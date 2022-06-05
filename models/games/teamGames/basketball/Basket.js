@@ -7,15 +7,17 @@ const BasketSchema = new mongoose.Schema(
             required: true
         },
         byTeam: {
-            type: String,
+            type: mongoose.Types.ObjectId,
+            ref: 'Team',
             required: true
         },
-        byJersey: {
-            type: Number,
+        byPlayer: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Player',
             required: true
         },
         time: {
-            type: String,
+            type: Date,
             required: true
         }
     }
