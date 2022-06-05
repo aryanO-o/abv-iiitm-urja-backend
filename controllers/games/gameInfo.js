@@ -3,10 +3,10 @@ const GameInfo = require("../../models/games/GameInfo")
 exports.createGameInfo = async (req, res) => {
     //expected data from frontend
     // {
-    //     date_and_time: "",
-    //     scorer: "",
-    //     referee: "",
-    //     venue: "",
+        // date_and_time: "",
+        // scorer: "",
+        // referee: "",
+        // venue: "",
     // }
 
     const {date_and_time, scorer, venue,referee} = req.body;
@@ -21,7 +21,10 @@ exports.createGameInfo = async (req, res) => {
             }
         );
         const result = await gameInfo.save();
-        res.json(result);
+        return result;
+        // res.json(result);
+        // console.log(result);
+        // console.log("iske bad chal rha hu.");
     }
     catch (err) {
         res.status(500).json({
@@ -44,7 +47,7 @@ exports.updateGameInfo = async (req, res) => {
     try{
         const result = await GameInfo.findOneAndUpdate(
             {
-                _id: req.params.gameInfo_id
+                _id: req.gameInfoId
             },
             {
                 $set: {
@@ -58,8 +61,9 @@ exports.updateGameInfo = async (req, res) => {
                 new: true,
             }
         )
+        return result;
+        // res.json(result);
 
-        res.json(result);
     }
     catch (err) {
         res.status(500).json({
@@ -85,19 +89,19 @@ exports.getGameInfo = async (req,res) => {
     }
 }
 
-exports.deleteGameInfo = (req, res) => {
+exports.deleteGameInfo = async (req, res) => {
     //expected data from frontend
     // {
     //     gameInfo_id: req.params.gameInfo_id
     // }
 
-    GameInfo.findByIdAndDelete(req.params.gameInfo_id)
-    .then((data) => {
-        res.status(200).json(data);
-    })
-    .catch((err) => {
+    try{
+        const result = await GameInfo.findByIdAndDelete(req.gameInfo_id)
+        return result;
+    }
+    catch (err) {
         res.status(500).json({
-            message: "mongodb error: " + err.message
+            message: "yaha wali error mongodb error: " + err.message
         })
-    })
+    }    
 }
