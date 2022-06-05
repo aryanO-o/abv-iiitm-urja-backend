@@ -227,31 +227,3 @@ exports.getAllTeams = async (req, res) => {
         }) 
     }
 }
-
-// try{
-//     const result = await Team.find({_id: req.params.team_id});
-//     let ObjectIdsOfTeamPlayers;
-//     const getTeamPlayerObjectIds = await result.forEach((team) => {
-//         ObjectIdsOfTeamPlayers = team.players
-//     })
-//     // console.log(ObjectIdsOfTeamPlayers)
-//     let teamPlayersIds = [];
-//     const gettingTeamPlayerIds = await ObjectIdsOfTeamPlayers.forEach((player) => {
-//             console.log(player);
-//     })
-
-    // let i = 0;
-    // while(i< teamPlayersIds.length + 1)
-    // {
-    //     const deletedPlayer = await Players.findByIdAndDelete(teamPlayersIds[i])
-    //     deletedPlayers.push(deletedPlayer);
-    //     i++;
-    //     if(i == teamPlayersIds.length){
-    //         const deletedTeam = Team.findByIdAndDelete(req.params.team_id);
-    //         res.json({
-    //             deletedTeam: deletedTeam,
-    //             deletedPlayers: deletedPlayers
-    //         })
-    //     }
-    // }
-// }

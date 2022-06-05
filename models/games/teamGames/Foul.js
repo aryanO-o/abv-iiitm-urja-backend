@@ -3,13 +3,17 @@ const mongoose = require('mongoose');
 const FoulSchema = new mongoose.Schema(
     {
         time: {
-            type: Date,
+            type: String,
             required: true
         },
         byPlayer: {
             type: mongoose.Types.ObjectId,
             ref: 'Player',
             required: true
+        },
+        eventId: {
+            type: mongoose.Types.ObjectId,
+            refPath: 'onModel'
         }
     }
 )

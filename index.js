@@ -24,6 +24,7 @@ const gamePlayersRoutes = require('./routes/games/player')
 const gameInfoRoutes = require('./routes/games/gameInfo')
 const gamesRoutes = require('./routes/games/game')
 const gameTeamsRoutes = require('./routes/games/teamGames/team')
+const gameFoulsRoutes = require('./routes/games/teamGames/foul')
 
 // importing the db configurations 
 const {client} = require('./config/postgreSQLdb');
@@ -70,6 +71,7 @@ app.use('/games/players', gamePlayersRoutes);
 app.use('/games/game-info', gameInfoRoutes);
 app.use('/games', gamesRoutes);
 app.use('/games/teams', gameTeamsRoutes);
+app.use('/games/fouls', gameFoulsRoutes);
 
 //TODO: kuch aesa krna he ki teams jo ho vo jitne events jeeti he uske according unhe points mile and vo points show ho...... ye to basic hi hota he.
 //TODO: abhi to fouls bhi implement krne he sayad basketball game fo baskets + fouls ho jaega ya aesa kuch
