@@ -148,3 +148,5 @@ exports.deleteGame = async (req, res) => {
     
         
 }
+
+//TODO: get all games sayad kisi kam ka ho.

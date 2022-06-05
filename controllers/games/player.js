@@ -22,8 +22,9 @@ exports.addPlayer = async (req, res) => {
             }
         )
 
-        const savedPlayers = await player.save();
-        res.json(savedPlayers);
+        const savedPlayer = await player.save();
+        // res.json(savedPlayers);
+        return savedPlayer;
     }
     catch(err){
         res.status(500).json({

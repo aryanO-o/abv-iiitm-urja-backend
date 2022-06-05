@@ -25,5 +25,7 @@ const BasketballGameSchema = mongoose.Schema(
     }
 )
 
+//TODO: add team a score and team B score because i need to give the facility to set final scores without entering minor details.
+
 const BasketballGame = mongoose.model('BasketballGame', BasketballGameSchema);
 module.exports = BasketballGame;
