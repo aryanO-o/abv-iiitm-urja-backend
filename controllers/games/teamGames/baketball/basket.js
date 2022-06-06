@@ -5,7 +5,6 @@
 
 const { default: mongoose } = require("mongoose");
 const Basket = require("../../../../models/games/teamGames/basketball/Basket");
-const BasketballGame = require("../../../../models/games/teamGames/basketball/BasketballGame");
 const { addBasketToBasketballGame, removeBasketFromBasketballGame, updateTeamScores } = require("./basketball");
 
 exports.addBasket = async (req, res) => {

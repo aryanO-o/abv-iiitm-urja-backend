@@ -1,74 +1,8 @@
-// update final scores
-//  add basket in game, remove basket from game
-// create basketball game, remove basketball game, update basketballgame, getBasketball games
-//TODO: jab basketball game delete ho like jab fest end ho jae to dhyan rakhna he ki usse related sare baskets bhi delete ho jae
+//TODO: jab football game delete ho like jab fest end ho jae to dhyan rakhna he ki usse related sare goals bhi delete ho jae
 
-const BasketballGame = require("../../../../models/games/teamGames/basketball/BasketballGame");
+const FootballGame = require('../../../../models/games/teamGames/football/FootballGame')
 
-exports.addBasketToBasketballGame = async (req, res) => {
-    //expected data from frontend
-    // {
-    //     basket_id: "",
-    //     eventId: "",
-    // }
-
-    const { eventId} = req.body;
-    const basket_id = req.basket_id
-    try {
-        const basketballGame = await BasketballGame.findOneAndUpdate({_id: eventId},
-            {
-                $push:{
-                    baskets: basket_id,
-                }
-            },
-            {
-                new: true,
-                runValidators: true
-            }
-        );
-        return basketballGame;
-    }
-    catch (err) {
-        res.status(500).json({
-            message: "mongodb error: " + err.message
-        })
-    }
-}
-
-exports.removeBasketFromBasketballGame = async (req, res) => {
-    //expected data from frontend
-    // {
-    //     basket_id: "",
-    //     eventId: "",
-    // }
-
-    const { eventId} = req.body;
-    
-    try {
-        const basketballGame = await BasketballGame.findOneAndUpdate(
-            {
-                _id: eventId,
-            },
-            {
-                $pull: {
-                    baskets: req.params.basket_id
-                }
-            },
-            {
-                new: true
-            }
-        )
-
-        return basketballGame;
-    }
-    catch (err) {
-        res.status(500).json({
-            message: "mongodb error: " + err.message
-        })
-    }
-}
-
-exports.createBasketballGame = async (req, res) => {
+exports.createFootballGame = async (req, res) => {
     //expected data from frontend
     // {
     //     teamA: "",
@@ -78,16 +12,16 @@ exports.createBasketballGame = async (req, res) => {
 
     const {teamA, teamB} = req.body;
     try {
-        const basketballGame = await new BasketballGame({
+        const footballGame = await new FootballGame({
             teamA: teamA,
             teamB: teamB,
             teamAScore: 0,
             teamBScore: 0,
         })
 
-        const savedBasketballGame = await basketballGame.save();
+        const savedfootballGame = await footballGame.save();
 
-        res.json(savedBasketballGame);
+        res.json(savedfootballGame);
     }
     catch (err) {
         res.status(500).json({
@@ -96,7 +30,7 @@ exports.createBasketballGame = async (req, res) => {
     }
 }
 
-exports.updateBasketballGame = async (req, res) => {
+exports.updateFootballGame = async (req, res) => {
     //expected data from frontend
     // {
     //     teamA: ""
@@ -106,7 +40,7 @@ exports.updateBasketballGame = async (req, res) => {
 
     const {teamA, teamB} = req.body;
     try {
-        const basketballGame = await BasketballGame.findOneAndUpdate(
+        const footballGame = await FootballGame.findOneAndUpdate(
             {
                 _id: req.params.event_id,
             },
@@ -122,7 +56,7 @@ exports.updateBasketballGame = async (req, res) => {
             }
         )
 
-        res.json(basketballGame);
+        res.json(footballGame);
     }
     catch (err) {
         res.status(500).json({
@@ -131,11 +65,74 @@ exports.updateBasketballGame = async (req, res) => {
     }
 }
 
-exports.getAllBasketBallGames = async (req, res) =>{
+exports.getAllFootBallGames = async (req, res) =>{
     
     try {
-        const result = await BasketballGame.find();
+        const result = await FootballGame.find();
         res.json(result);
+    }
+    catch (err) {
+        res.status(500).json({
+            message: "mongodb error: " + err.message
+        })
+    }
+}
+
+exports.addGoalToFootballGame = async (req, res) => {
+    //expected data from frontend
+    // {
+    //     goal_id: "",
+    //     eventId: "",
+    // }
+
+    const { eventId} = req.body;
+    const goal_id = req.goal_id
+    try {
+        const footballGame = await FootballGame.findOneAndUpdate({_id: eventId},
+            {
+                $push:{
+                    goals: goal_id,
+                }
+            },
+            {
+                new: true,
+                runValidators: true
+            }
+        );
+        return footballGame;
+    }
+    catch (err) {
+        res.status(500).json({
+            message: "mongodb error: " + err.message
+        })
+    }
+}
+
+exports.removeGoalFromFootballGame = async (req, res) => {
+    //expected data from frontend
+    // {
+    //     goal_id: "",
+    //     eventId: "",
+    // }
+
+    const { eventId} = req.body;
+    
+    try {
+        const footballGame = await FootballGame.findOneAndUpdate(
+            {
+                _id: eventId,
+            },
+            {
+                $pull: {
+                    goals: req.params.goal_id
+                }
+            },
+            {
+                new: true
+            }
+        )
+
+        return footballGame;
     }
     catch (err) {
         res.status(500).json({
@@ -151,20 +148,18 @@ exports.updateTeamScores = async (req, res) => {
     //     byTeam: ""
     //     eventId: ""
     // }
-
-
     const { byTeam} = req.body;
     const eventId = req.body.eventId;
     
     try {
-        const basketballGame = await BasketballGame.find({_id: eventId});
+        const footballGame = await FootballGame.find({_id: eventId});
         
-        const scoreOfA = basketballGame[0].teamAScore;
+        const scoreOfA = footballGame[0].teamAScore;
 
-        const scoreOfB = basketballGame[0].teamBScore;
-        if(basketballGame[0].teamA.toString() == byTeam)
+        const scoreOfB = footballGame[0].teamBScore;
+        if(footballGame[0].teamA.toString() == byTeam)
         {
-            const updatedGame = await BasketballGame.findOneAndUpdate(
+            const updatedGame = await FootballGame.findOneAndUpdate(
                 {
                     _id: eventId,
                 },
@@ -179,9 +174,9 @@ exports.updateTeamScores = async (req, res) => {
                 }
             )
             return updatedGame;
-        }else if(basketballGame[0].teamB.toString() == byTeam)
+        }else if(footballGame[0].teamB.toString() == byTeam)
         {
-            const updatedGame = await BasketballGame.findOneAndUpdate(
+            const updatedGame = await FootballGame.findOneAndUpdate(
                 {
                     _id: eventId,
                 },
@@ -216,7 +211,7 @@ exports.setWinner = async  (req, res) => {
     const{teamAScore, teamBScore} = req.body;
 
     try{
-        const basketballGame = await BasketballGame.findOneAndUpdate(
+        const footballGame = await FootballGame.findOneAndUpdate(
             {_id: req.params.event_id},
             {
                 $set: {
@@ -230,13 +225,13 @@ exports.setWinner = async  (req, res) => {
             }
         )
         if(teamAScore > teamBScore){
-            const afterSettingWinner = await BasketballGame.findOneAndUpdate(
+            const afterSettingWinner = await FootballGame.findOneAndUpdate(
                 {
                     _id: req.params.event_id
                 },
                 {
                     $set: {
-                        winner: basketballGame.teamA
+                        winner: footballGame.teamA
                     }
                 },
                 {
@@ -247,13 +242,13 @@ exports.setWinner = async  (req, res) => {
             res.json(afterSettingWinner)
         }
         else if(teamAScore < teamBScore){
-            const afterSettingWinner = await BasketballGame.findOneAndUpdate(
+            const afterSettingWinner = await FootballGame.findOneAndUpdate(
                 {
                     _id: req.params.event_id
                 },
                 {
                     $set: {
-                        winner: basketballGame.teamB
+                        winner: footballGame.teamB
                     }
                 },
                 {

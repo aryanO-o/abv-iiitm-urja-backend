@@ -27,6 +27,9 @@ const gameTeamsRoutes = require('./routes/games/teamGames/team')
 const gameFoulsRoutes = require('./routes/games/teamGames/foul')
 const gameBasketRoutes = require('./routes/games/teamGames/basketball/basket')
 const gameBasketballRoutes = require('./routes/games/teamGames/basketball/basketball')
+const gameGoalRoutes = require('./routes/games/teamGames/football/goal')
+const gameFootballRoutes = require('./routes/games/teamGames/football/football')
+
 
 // importing the db configurations 
 const {client} = require('./config/postgreSQLdb');
@@ -76,6 +79,9 @@ app.use('/games/teams', gameTeamsRoutes);
 app.use('/games/fouls', gameFoulsRoutes);
 app.use('/games/basket', gameBasketRoutes);
 app.use('/games/basketball', gameBasketballRoutes);
+app.use('/games/goal', gameGoalRoutes);
+app.use('/games/football', gameFootballRoutes);
+
 
 //TODO: kuch aesa krna he ki teams jo ho vo jitne events jeeti he uske according unhe points mile and vo points show ho...... ye to basic hi hota he.
 //TODO: match fixtures ka kya socha he
