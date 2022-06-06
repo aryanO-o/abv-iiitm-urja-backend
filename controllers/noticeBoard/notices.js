@@ -93,7 +93,8 @@ exports.updateNotice = async (req, res) => {
                 }
             },
             {
-                new: true
+                new: true,
+                runValidators: true
             }
         )
 

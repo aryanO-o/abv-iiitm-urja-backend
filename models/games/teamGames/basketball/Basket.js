@@ -19,6 +19,11 @@ const BasketSchema = new mongoose.Schema(
         time: {
             type: String,
             required: true
+        },
+        eventId: {
+            type: mongoose.Types.ObjectId,
+            ref: 'BasketballGame',
+            required: true
         }
     }
 )

@@ -59,6 +59,7 @@ exports.updateGameInfo = async (req, res) => {
             },
             {
                 new: true,
+                runValidators: true,
             }
         )
         return result;

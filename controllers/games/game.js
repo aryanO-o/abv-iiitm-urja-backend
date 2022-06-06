@@ -97,7 +97,8 @@ exports.updateGame = async (req, res) => {
                     }
                 },
                 {
-                    new: true
+                    new: true,
+                    runValidators: true
                 }
             )
 

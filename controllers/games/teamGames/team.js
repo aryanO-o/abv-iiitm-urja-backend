@@ -44,7 +44,8 @@ exports.changeHouseName = async (req, res) => {
                 }
             },
             {
-                new: true
+                new: true,
+                runValidators: true
             }
         )
 
@@ -77,7 +78,8 @@ exports.addPlayerToTeam = async (req, res) => {
                 }
             },
             {
-                new: true
+                new: true,
+                runValidators: true
             }
         );
 
@@ -110,7 +112,8 @@ exports.removePlayerFromTeam = async (req, res) => {
                 }
             },
             {
-                new: true
+                new: true,
+                runValidators: true
             }
         )
         const deletedPlayer = await Player.findByIdAndDelete(req.params.player_id);

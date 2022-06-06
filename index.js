@@ -26,6 +26,7 @@ const gamesRoutes = require('./routes/games/game')
 const gameTeamsRoutes = require('./routes/games/teamGames/team')
 const gameFoulsRoutes = require('./routes/games/teamGames/foul')
 const gameBasketRoutes = require('./routes/games/teamGames/basketball/basket')
+const gameBasketballRoutes = require('./routes/games/teamGames/basketball/basketball')
 
 // importing the db configurations 
 const {client} = require('./config/postgreSQLdb');
@@ -74,9 +75,13 @@ app.use('/games', gamesRoutes);
 app.use('/games/teams', gameTeamsRoutes);
 app.use('/games/fouls', gameFoulsRoutes);
 app.use('/games/basket', gameBasketRoutes);
+app.use('/games/basketball', gameBasketballRoutes);
 
 //TODO: kuch aesa krna he ki teams jo ho vo jitne events jeeti he uske according unhe points mile and vo points show ho...... ye to basic hi hota he.
 //TODO: match fixtures ka kya socha he
+//TODO: after the game is end uski koi bhi chij jese baskets, goals sab changes na ho pae, frontend se krna jyada aasan rhega ig
+//TODO: kam khtm krne ke bad ek jgah pr sare api end points acche se group krke likh lena.
+
 // start listening at the port assigned.
 app.listen(port, () => {
     console.log(`server started at port: ${port}`);

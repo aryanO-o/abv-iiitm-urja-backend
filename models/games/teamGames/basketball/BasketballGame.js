@@ -4,7 +4,7 @@ const Basket = require('./Basket');
 
 const BasketballGameSchema = mongoose.Schema(
     {
-        basket: [{
+        baskets: [{
             type: mongoose.Types.ObjectId,
             ref: 'Basket'
         }],
@@ -22,16 +22,11 @@ const BasketballGameSchema = mongoose.Schema(
             type: mongoose.Types.ObjectId,
             ref: 'Team'
         },
-        teamAScore: {
-            type: Number
-        },
-        teamBScore: {
-            type: Number
-        }
+        teamAScore: Number,
+        teamBScore: Number
+        
     }
 )
-
-//TODO: add team a score and team B score because i need to give the facility to set final scores without entering minor details.
 
 const BasketballGame = mongoose.model('BasketballGame', BasketballGameSchema);
 module.exports = BasketballGame;
