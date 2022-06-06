@@ -21,6 +21,12 @@ const BasketballGameSchema = mongoose.Schema(
         winner: {
             type: mongoose.Types.ObjectId,
             ref: 'Team'
+        },
+        teamAScore: {
+            type: Number
+        },
+        teamBScore: {
+            type: Number
         }
     }
 )
