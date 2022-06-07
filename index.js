@@ -32,9 +32,11 @@ const gameFootballRoutes = require('./routes/games/teamGames/football/football')
 const gameBadmintonSetsRoutes = require('./routes/games/teamGames/badminton/set')
 const gameBadmintonPointsRoutes = require('./routes/games/teamGames/badminton/point')
 const gameBadmintonRoutes = require('./routes/games/teamGames/badminton/badminton')
-const gameTableTennisSetsRoutes = require('./routes/games/teamGames/tableTennis/set')
 const gameTableTennisPointsRoutes = require('./routes/games/teamGames/tableTennis/point')
+const gameTableTennisSetsRoutes = require('./routes/games/teamGames/tableTennis/set')
 const gameTableTennisRoutes = require('./routes/games/teamGames/tableTennis/tableTennis')
+const gameLawnTennisSetsRoutes = require('./routes/games/teamGames/lawnTennis/set')
+const gameLawnTennisRoutes = require('./routes/games/teamGames/lawnTennis/lawnTennis')
 
 
 // importing the db configurations 
@@ -90,9 +92,11 @@ app.use('/games/football', gameFootballRoutes);
 app.use('/games/badminton/sets', gameBadmintonSetsRoutes);
 app.use('/games/badminton/points', gameBadmintonPointsRoutes);
 app.use('/games/badminton', gameBadmintonRoutes);
-app.use('/games/table-tennis/sets', gameTableTennisSetsRoutes);
 app.use('/games/table-tennis/points', gameTableTennisPointsRoutes);
+app.use('/games/table-tennis/sets', gameTableTennisSetsRoutes);
 app.use('/games/table-tennis', gameTableTennisRoutes);
+app.use('/games/lawn-tennis/sets', gameLawnTennisSetsRoutes);
+app.use('/games/lawn-tennis', gameLawnTennisRoutes);
 
 
 //TODO: kuch aesa krna he ki teams jo ho vo jitne events jeeti he uske according unhe points mile and vo points show ho...... ye to basic hi hota he.
