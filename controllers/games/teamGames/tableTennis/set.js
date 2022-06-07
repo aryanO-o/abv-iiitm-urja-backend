@@ -1,6 +1,6 @@
-const Set = require("../../../../models/games/teamGames/badminton/Set");
-const { addSetToBadmintonGame, removeSetFromBadmintonGame, updateTeamScores } = require("./badminton");
+const Set = require("../../../../models/games/teamGames/tableTennis/Set");
 const { default: mongoose } = require("mongoose");
+const { addSetToTableTennisGame, removeSetFromTableTennisGame, updateTeamScores } = require("./tableTennis");
 
 exports.addSet = async (req, res) => {
     //expected data from frontend
@@ -23,11 +23,11 @@ exports.addSet = async (req, res) => {
         const savedSet = await set.save();
         
         req.set_id = savedSet._id;
-        const addedSetToBadmintonGame = await addSetToBadmintonGame(req, res);
+        const addedSetToTableTennisGame = await addSetToTableTennisGame(req, res);
 
         res.json({
             savedSet,
-            addedSetToBadmintonGame
+            addedSetToTableTennisGame
         })
     }
     catch(err) {
@@ -47,11 +47,11 @@ exports.removeSet = async (req, res) => {
     try {
         const deletedSet = await Set.findByIdAndDelete(req.params.set_id);
         req.body.eventId = deletedSet.eventId;
-        const BadmintonGameAfterDeletingSet = await removeSetFromBadmintonGame(req, res);
+        const TableTennisGameAfterDeletingSet = await removeSetFromTableTennisGame(req, res);
              
         res.json({
             deletedSet,
-            BadmintonGameAfterDeletingSet
+            TableTennisGameAfterDeletingSet
         });
     }
     catch (err) {
@@ -295,10 +295,10 @@ exports.setWinnerOfSet = async  (req, res) => {
             req.body.byTeam = set.teamA;
             req.body.eventId = set.eventId;
             req.changeInPoints = Number(1)
-            const badmintonGameAfterUpdatedScores= await updateTeamScores(req, res);
+            const tableTennisGameAfterUpdatedScores= await updateTeamScores(req, res);
 
 
-            res.json({afterSettingWinnerOfSet, badmintonGameAfterUpdatedScores})
+            res.json({afterSettingWinnerOfSet, tableTennisGameAfterUpdatedScores})
         }
         else if(teamASetScore < teamBSetScore){
             const afterSettingWinnerOfSet = await Set.findOneAndUpdate(
@@ -318,10 +318,10 @@ exports.setWinnerOfSet = async  (req, res) => {
             req.body.byTeam = set.teamB;
             req.body.eventId = set.eventId;
             req.changeInPoints = Number(1)
-            const badmintonGameAfterUpdatedScores= await updateTeamScores(req, res);
+            const tableTennisGameAfterUpdatedScores= await updateTeamScores(req, res);
 
 
-            res.json({afterSettingWinnerOfSet, badmintonGameAfterUpdatedScores})
+            res.json({afterSettingWinnerOfSet, tableTennisGameAfterUpdatedScores})
         }
         else{
             res.json({
