@@ -22,7 +22,7 @@ exports.addGoal = async (req, res) => {
         })
         const savedGoal = await goal.save();
         
-        req.goal_id = goal._id;
+        req.goal_id = savedGoal._id;
         const addedGoalToFootballGame = await addGoalToFootballGame(req, res);
         req.event_id = eventId;
         req.changeInPoints = Number(1)
