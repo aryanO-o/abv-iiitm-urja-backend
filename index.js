@@ -37,6 +37,8 @@ const gameTableTennisSetsRoutes = require('./routes/games/teamGames/tableTennis/
 const gameTableTennisRoutes = require('./routes/games/teamGames/tableTennis/tableTennis')
 const gameLawnTennisSetsRoutes = require('./routes/games/teamGames/lawnTennis/set')
 const gameLawnTennisRoutes = require('./routes/games/teamGames/lawnTennis/lawnTennis')
+const gameSquashSetsRoutes = require('./routes/games/teamGames/squash/set')
+const gameSquashRoutes = require('./routes/games/teamGames/squash/squash')
 
 
 // importing the db configurations 
@@ -97,6 +99,8 @@ app.use('/games/table-tennis/sets', gameTableTennisSetsRoutes);
 app.use('/games/table-tennis', gameTableTennisRoutes);
 app.use('/games/lawn-tennis/sets', gameLawnTennisSetsRoutes);
 app.use('/games/lawn-tennis', gameLawnTennisRoutes);
+app.use('/games/squash/sets', gameSquashSetsRoutes);
+app.use('/games/squash', gameSquashRoutes);
 
 
 //TODO: kuch aesa krna he ki teams jo ho vo jitne events jeeti he uske according unhe points mile and vo points show ho...... ye to basic hi hota he.
