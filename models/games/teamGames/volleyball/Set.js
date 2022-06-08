@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const Team = require('../Team');
 
-const SquashSetSchema = mongoose.Schema(
+const VolleyballSetSchema = mongoose.Schema(
     {
+
         teamA: {
             type: mongoose.Types.ObjectId,
             ref: 'Team',
@@ -28,5 +29,5 @@ const SquashSetSchema = mongoose.Schema(
     }
 )
 
-const SquashSet = mongoose.model('SquashSet', SquashSetSchema);
-module.exports = SquashSet;
+const VolleyballSet = mongoose.model('VolleyballSet', VolleyballSetSchema);
+module.exports = VolleyballSet;

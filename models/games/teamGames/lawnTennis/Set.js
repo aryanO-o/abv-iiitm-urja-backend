@@ -3,10 +3,6 @@ const Team = require('../Team');
 
 const LawnTennisSetSchema = mongoose.Schema(
     {
-        points: [{
-            type: mongoose.Types.ObjectId,
-            ref: 'Point'
-        }],
         teamA: {
             type: mongoose.Types.ObjectId,
             ref: 'Team',

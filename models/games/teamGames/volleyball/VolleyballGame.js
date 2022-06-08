@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 const Team = require('../Team');
 
-const SquashSetSchema = mongoose.Schema(
+const VolleyballGameSchema = mongoose.Schema(
     {
+        sets: [{
+            type: mongoose.Types.ObjectId,
+            ref: 'Goal'
+        }],
         teamA: {
             type: mongoose.Types.ObjectId,
             ref: 'Team',
@@ -17,16 +21,11 @@ const SquashSetSchema = mongoose.Schema(
             type: mongoose.Types.ObjectId,
             ref: 'Team'
         },
-        teamASetScore: Number,
-        teamBSetScore: Number,
-        eventId: {
-            type: mongoose.Types.ObjectId,
-            refPath: 'onModel',
-            required: true
-        }
+        teamAScore: Number,
+        teamBScore: Number
         
     }
 )
 
-const SquashSet = mongoose.model('SquashSet', SquashSetSchema);
-module.exports = SquashSet;
+const VolleyballGame = mongoose.model('VolleyballGame', VolleyballGameSchema);
+module.exports = VolleyballGame;
