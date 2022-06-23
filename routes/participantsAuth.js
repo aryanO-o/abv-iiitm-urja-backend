@@ -12,11 +12,6 @@ const { participnatsSignIn, participnatsSignUp } = require('../controllers/parti
 router.post('/sign-up', participnatsSignUp)
 router.post('/sign-in', participnatsSignIn)
 
-router.get('', (req, res)=>{
-    res.send("han bhai /participants_auth tk aa gya.");
-    
-})
-
 
 // exporting all routes
 module.exports = router;

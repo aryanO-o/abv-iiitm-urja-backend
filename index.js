@@ -117,6 +117,7 @@ app.use('/games/snooker', gameSnookerRoutes);
 //TODO: kam khtm krne ke bad ek jgah pr sare api end points acche se group krke likh lena.
 
 // start listening at the port assigned.
+// app.listen(port, '0.0.0.0' ,() => {
 app.listen(port, () => {
     console.log(`server started at port: ${port}`);
 })

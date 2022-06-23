@@ -91,3 +91,16 @@ exports.getRolePlayersInfo = (req, res) => {
     })
 }
 
+exports.getRolePlayers = (req, res) => {
+    client
+    .query(`select * from organizers_auth where role = '${req.body.role}'`)
+    .then((data) => {
+        res.send(data.rows);
+    })
+    .catch((err) => {
+        res.status(500).json({ 
+            message: "database error occurred" + err
+        })
+    })
+}
+

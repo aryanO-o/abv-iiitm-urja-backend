@@ -3,8 +3,8 @@ const { organizersSignUp, organizersSignIn } = require('../controllers/organizer
 
 const router = express.Router();
 
-router.get('/sign-up', organizersSignUp)
+router.post('/sign-up', organizersSignUp)
 
-router.get('/sign-in', organizersSignIn)
+router.post('/sign-in', organizersSignIn)
 
 module.exports = router;

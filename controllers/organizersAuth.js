@@ -69,7 +69,8 @@ exports.organizersSignUp = (req, res) => {
 
                         res.json({
                             message: 'sign up successfully',
-                            token: token
+                            token: token,
+                            role
                         })
                     })
                     .catch((err) => {
@@ -122,7 +123,8 @@ exports.organizersSignIn = (req, res) => {
     
                         res.json({
                             message: 'sign in successfully',
-                            token: token
+                            token: token,
+                            role
                         })
                     })
                     .catch((err) => {

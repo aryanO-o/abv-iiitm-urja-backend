@@ -3,7 +3,7 @@ const router = express.Router();
 const { verifyOrganizersToken } = require('../middlewares/authMiddlewares');
 const { getOrganizersLoginId, getRole} = require('../middlewares/organizersInfoMiddlewares')
 
-const {getOrganizerInfo, deleteOrganizer, getRolePlayersInfo, updateOrganizerInfo} = require('../controllers/organizersInfo')
+const {getOrganizerInfo, deleteOrganizer, getRolePlayersInfo, updateOrganizerInfo, getRolePlayers} = require('../controllers/organizersInfo')
 
 router.param('login_id', getOrganizersLoginId);
 router.param('role_players_info', getRole)
@@ -15,5 +15,7 @@ router.delete('/delete/:login_id', verifyOrganizersToken, deleteOrganizer)
 router.put('/update/:login_id', verifyOrganizersToken, updateOrganizerInfo)
 
 router.get('/get/role-players/:role_players_info', verifyOrganizersToken, getRolePlayersInfo)
+
+router.post('/get/role-players', verifyOrganizersToken, getRolePlayers);
 
 module.exports = router;
