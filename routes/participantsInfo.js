@@ -10,9 +10,9 @@ const {getParticipnatCollegeId} = require('../middlewares/participantsInfoMiddle
 // yaha parameter college_id he and middleware getParticipnatCollegeId he.
 router.param("college_id", getParticipnatCollegeId)
 
-router.get('/get/:college_id',verifyToken,  getParticipantsInfo)
+router.get('/get/:college_id',  getParticipantsInfo)
 
-router.post('/insert/:college_id', verifyToken, insertParticipantsInfo);
+router.post('/insert/:college_id', insertParticipantsInfo);
 
 router.put('/update/:college_id', verifyToken, updateParticipantsInfo);
 

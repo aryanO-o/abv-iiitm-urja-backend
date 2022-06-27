@@ -16,9 +16,9 @@ const { client } = require("../config/postgreSQLdb");
 exports.getParticipantsInfo = (req, res) => {
     const participant_id = req.participant_college_id;
     client
-    .query( `SELECT * FROM participants_info WHERE college_id ='${participant_id}'`)
+    .query( `SELECT * FROM participants_info WHERE college_id ='${participant_id}';`)
     .then((data) => {
-        res.send(data.rows[0]);
+        res.json(data.rowCount);
     })
     .catch((err) => {
         res.status(500).send("database error: " + err.message);
@@ -32,7 +32,9 @@ exports.updateParticipantsInfo = (req, res) => {
     client
     .query( `UPDATE participants_info SET name = '${name}', year = '${year}', branch = '${branch}', whatsapp_country_code = '${whatsapp_country_code}', whatsapp_number = '${whatsapp_number}', mobile_number_country_code = '${mobile_number_country_code}', mobile_number = '${mobile_number}' WHERE college_id = '${participant_id}';`)
     .then((data) => {
-        res.send("information updated successfully");
+        res.json({
+            message: "information updated successfully"
+        });
     })
     .catch((err) => {
         res.status(500).send("database error: " + err.message);
@@ -46,7 +48,9 @@ exports.insertParticipantsInfo = (req, res) => {
     client
     .query( `INSERT INTO participants_info VALUES ( '${participant_id}', '${name}', '${year}', '${branch}', '${whatsapp_country_code}','${whatsapp_number}', '${mobile_number_country_code}',  '${mobile_number}');`)
     .then((data) => {
-        res.send("information inserted successfully");
+        res.send({
+            message: "added successfully"
+        });
     })
     .catch((err) => {
         res.status(500).send("database error: " + err.message);
