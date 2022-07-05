@@ -4,6 +4,7 @@
 //TODO: jab basketball game delete ho like jab fest end ho jae to dhyan rakhna he ki usse related sare baskets bhi delete ho jae
 
 const BasketballGame = require("../../../../models/games/teamGames/basketball/BasketballGame");
+const { getTeamById } = require("../team");
 
 exports.addBasketToBasketballGame = async (req, res) => {
     //expected data from frontend
@@ -134,7 +135,7 @@ exports.updateBasketballGame = async (req, res) => {
 exports.getAllBasketBallGames = async (req, res) =>{
     
     try {
-        const result = await BasketballGame.find();
+        let result = await BasketballGame.find();
         res.json(result);
     }
     catch (err) {
@@ -229,49 +230,63 @@ exports.setWinner = async  (req, res) => {
                 runValidators: true
             }
         )
-        if(teamAScore > teamBScore){
-            const afterSettingWinner = await BasketballGame.findOneAndUpdate(
-                {
-                    _id: req.params.event_id
-                },
-                {
-                    $set: {
-                        winner: basketballGame.teamA
-                    }
-                },
-                {
-                    new: true,
-                    runValidators: true
-                }
-            )
-            res.json(afterSettingWinner)
-        }
-        else if(teamAScore < teamBScore){
-            const afterSettingWinner = await BasketballGame.findOneAndUpdate(
-                {
-                    _id: req.params.event_id
-                },
-                {
-                    $set: {
-                        winner: basketballGame.teamB
-                    }
-                },
-                {
-                    new: true,
-                    runValidators: true
-                }
-            )
-            res.json(afterSettingWinner)
-        }
-        else{
-            res.json({
-                message: "cannot set two winners."
-            })
-        }
+
+        res.json(basketballGame)
+        // if(teamAScore > teamBScore){
+        //     const afterSettingWinner = await BasketballGame.findOneAndUpdate(
+        //         {
+        //             _id: req.params.event_id
+        //         },
+        //         {
+        //             $set: {
+        //                 winner: basketballGame.teamA
+        //             }
+        //         },
+        //         {
+        //             new: true,
+        //             runValidators: true
+        //         }
+        //     )
+        //     res.json(afterSettingWinner)
+        // }
+        // else if(teamAScore < teamBScore){
+        //     const afterSettingWinner = await BasketballGame.findOneAndUpdate(
+        //         {
+        //             _id: req.params.event_id
+        //         },
+        //         {
+        //             $set: {
+        //                 winner: basketballGame.teamB
+        //             }
+        //         },
+        //         {
+        //             new: true,
+        //             runValidators: true
+        //         }
+        //     )
+        //     res.json(afterSettingWinner)
+        // }
+        // else{
+        //     res.json({
+        //         message: "cannot set two winners."
+        //     })
+        // }
     }
     catch (err) {
         res.status(500).json({
             message: " mongodb error: " + err
+        })
+    }
+}
+
+exports.getBasketballGameById = async (req, res) => {
+    try {
+        let result = await BasketballGame.findOne({_id: req.params.eventId});
+        res.json(result);
+    }
+    catch (err) {
+        res.status(500).json({
+            message: "mongodb error: " + err.message
         })
     }
 }

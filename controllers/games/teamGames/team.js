@@ -83,10 +83,7 @@ exports.addPlayerToTeam = async (req, res) => {
             }
         );
 
-        res.status(200).json({
-            pushedPlyer: player,
-            team: team
-        })
+        res.status(200).json(team)
 
     }
     catch(err){
@@ -118,10 +115,7 @@ exports.removePlayerFromTeam = async (req, res) => {
         )
         const deletedPlayer = await Player.findByIdAndDelete(req.params.player_id);
 
-        res.json({
-            team: team,
-            deletedPlayer: deletedPlayer
-        });
+        res.json(deletedPlayer);
 
     }
     catch(err){
@@ -160,10 +154,9 @@ exports.removeTeam = async (req, res) => {
             
             if(i == teamPlayersIds.length){
                 const deletedTeam = await Team.findByIdAndDelete(req.params.team_id);
-                res.json({
-                    deletedTeam: deletedTeam,
-                    deletedPlayers: deletedPlayers
-                })
+                res.json(
+                    deletedTeam
+                )
                 
             }
             i++;
@@ -219,6 +212,18 @@ exports.getAllPlayersOfTeam = async (req, res) => {
     }
 }
 
+exports.getTeamById = async (req, res) => {
+    try {
+        const result = await Team.findById(req.params.team_id);
+        res.json(result);
+    }
+    catch(err) {
+        res.status(500).json({
+            message: "mongodb error: " + err
+        }) 
+    }
+}
+
 exports.getAllTeams = async (req, res) => {
     try {
         const result = await Team.find();
@@ -230,3 +235,4 @@ exports.getAllTeams = async (req, res) => {
         }) 
     }
 }
+

@@ -81,7 +81,7 @@ exports.getGameInfo = async (req,res) => {
 
     try {
         const result = await GameInfo.find({_id: req.params.gameInfo_id});
-        res.json(result);
+        res.json(result[0]);
     }
     catch (err) {
         res.status(500).json({

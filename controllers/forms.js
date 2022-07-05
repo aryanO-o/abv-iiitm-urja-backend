@@ -19,7 +19,7 @@ exports.createForm = (req, res) => {
         })
     })
     .catch((err) => {
-        res.status(err.status).json({
+        res.status(500).json({
             message: "database error: " + err.message
         })
     })

@@ -5,7 +5,6 @@ const PlayerSchema = new mongoose.Schema(
         jerseyNo: {
             type: Number,
             required: true,
-            unique: true
         },
         name: {
             type: String,

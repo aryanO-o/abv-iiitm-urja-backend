@@ -23,7 +23,6 @@ exports.addPlayer = async (req, res) => {
         )
 
         const savedPlayer = await player.save();
-        res.json(savedPlayer);
         return savedPlayer;
     }
     catch(err){

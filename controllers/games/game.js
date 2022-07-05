@@ -41,10 +41,7 @@ exports.createGame = (req, res) => {
             }
         ).save()
         .then((savedGameData) =>{
-            res.json({
-                gameInfoData: gameInfoData,
-                savedGameData: savedGameData
-            })
+            res.json(savedGameData)
         })
         .catch((err)=>{
             res.status(500).json({message: "mongodb error: " + err.message});
@@ -102,10 +99,7 @@ exports.updateGame = async (req, res) => {
                 }
             )
 
-            res.json({
-                updatedGame: result,
-                updateGameInfo: updatedGameInfo,
-            });
+            res.json(result);
 
         }
         catch(err){
@@ -150,4 +144,12 @@ exports.deleteGame = async (req, res) => {
         
 }
 
-//TODO: get all games sayad kisi kam ka ho.
+exports.getGameByEventId = async (req, res) => {
+    try {
+        const result = await Game.find({event_id: req.params.eventId});
+        res.json(result[0]);
+    }
+    catch (err) {
+        res.status(500).json({message: "mongodb error: " + err.message});
+    }
+}
