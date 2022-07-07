@@ -224,49 +224,62 @@ exports.setWinner = async  (req, res) => {
                 runValidators: true
             }
         )
-        if(teamAScore > teamBScore){
-            const afterSettingWinner = await LawnTennisGame.findOneAndUpdate(
-                {
-                    _id: req.params.event_id
-                },
-                {
-                    $set: {
-                        winner: lawnTennisGame.teamA
-                    }
-                },
-                {
-                    new: true,
-                    runValidators: true
-                }
-            )
-            res.json(afterSettingWinner)
-        }
-        else if(teamAScore < teamBScore){
-            const afterSettingWinner = await LawnTennisGame.findOneAndUpdate(
-                {
-                    _id: req.params.event_id
-                },
-                {
-                    $set: {
-                        winner: lawnTennisGame.teamB
-                    }
-                },
-                {
-                    new: true,
-                    runValidators: true
-                }
-            )
-            res.json(afterSettingWinner)
-        }
-        else{
-            res.json({
-                message: "cannot set two winners."
-            })
-        }
+        res.json(lawnTennisGame)
+        // if(teamAScore > teamBScore){
+        //     const afterSettingWinner = await LawnTennisGame.findOneAndUpdate(
+        //         {
+        //             _id: req.params.event_id
+        //         },
+        //         {
+        //             $set: {
+        //                 winner: lawnTennisGame.teamA
+        //             }
+        //         },
+        //         {
+        //             new: true,
+        //             runValidators: true
+        //         }
+        //     )
+        //     res.json(afterSettingWinner)
+        // }
+        // else if(teamAScore < teamBScore){
+        //     const afterSettingWinner = await LawnTennisGame.findOneAndUpdate(
+        //         {
+        //             _id: req.params.event_id
+        //         },
+        //         {
+        //             $set: {
+        //                 winner: lawnTennisGame.teamB
+        //             }
+        //         },
+        //         {
+        //             new: true,
+        //             runValidators: true
+        //         }
+        //     )
+        //     res.json(afterSettingWinner)
+        // }
+        // else{
+        //     res.json({
+        //         message: "cannot set two winners."
+        //     })
+        // }
     }
     catch (err) {
         res.status(500).json({
             message: " mongodb error: " + err
+        })
+    }
+}
+
+exports.getLawnTennisGameById = async (req, res) => {
+    try {
+        let result = await LawnTennisGame.findOne({_id: req.params.eventId});
+        res.json(result);
+    }
+    catch (err) {
+        res.status(500).json({
+            message: "mongodb error: " + err.message
         })
     }
 }
