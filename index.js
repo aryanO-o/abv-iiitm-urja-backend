@@ -44,6 +44,7 @@ const gameVolleyballRoutes = require('./routes/games/teamGames/volleyball/volley
 const gameSnookerSetsRoutes = require('./routes/games/teamGames/snooker/set')
 const gameSnookerRoutes = require('./routes/games/teamGames/snooker/snooker')
 const gameCricketRoutes = require('./routes/games/teamGames/cricket/cricket')
+const gameChessRoutes = require('./routes/games/individualGames/chess/chess')
 
 
 // importing the db configurations 
@@ -111,6 +112,7 @@ app.use('/games/volleyball', gameVolleyballRoutes);
 app.use('/games/snooker/sets', gameSnookerSetsRoutes);
 app.use('/games/snooker', gameSnookerRoutes);
 app.use('/games/cricket', gameCricketRoutes);
+app.use('/games/chess', gameChessRoutes);
 
 
 //TODO: kuch aesa krna he ki teams jo ho vo jitne events jeeti he uske according unhe points mile and vo points show ho...... ye to basic hi hota he.
