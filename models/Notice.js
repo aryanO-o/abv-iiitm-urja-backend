@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const NoticeSchema = new mongoose.Schema(
     {
-        role: {
+        heading: {
             type: String,
             required: true
         },

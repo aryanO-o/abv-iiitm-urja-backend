@@ -1,13 +1,9 @@
 const Notice = require('../../models/Notice');
 
 exports.getAllNotices = async (req, res) => {
-    // expected data from frontend
-    // {
-    //     role: ""
-    // }
 
     try{
-        const result = await Notice.find({role: req.params.role});
+        const result = await Notice.find();
         res.json(result);
     }
     catch(err) {
@@ -20,12 +16,12 @@ exports.getAllNotices = async (req, res) => {
 exports.createNotice = async (req, res) => {
     //expected data from frontend
     // {
-    //     role: "",
+    //     heading: "",
     //     message: "",
     //     imageURL: ""
     // }
 
-    const role = req.role;
+    const heading = req.body.heading;
     let imageURL;
     let message;
 
@@ -37,7 +33,7 @@ exports.createNotice = async (req, res) => {
 
     try {
         const notice = await new Notice ({
-            role: role,
+            heading: heading,
             message: message,
             imageURL: imageURL,
         })
@@ -75,11 +71,12 @@ exports.updateNotice = async (req, res) => {
     //expected data from frontend
     // {
     //     notice_id: "",
+    //     heading: "",
     //     message: "",
-    //     imgageURL: "",
+    //     imageURL: "",
     // }
 
-    const {message, imageURL} = req.body;
+    const {message, imageURL, heading} = req.body;
 
     try {
         const notice = await Notice.findOneAndUpdate(
@@ -88,6 +85,7 @@ exports.updateNotice = async (req, res) => {
             },
             {
                 $set: {
+                    heading: heading,
                     message: message,
                     imageURL: `${imageURL}`
                 }
@@ -97,6 +95,19 @@ exports.updateNotice = async (req, res) => {
                 runValidators: true
             }
         )
+
+        res.json(notice);
+    }
+    catch (err) {
+        res.status(500).json({
+            message: "mongodb error: " + err.message
+        })
+    }
+}
+
+exports.getNoticeById = async (req, res) => {
+    try {
+        const notice = await Notice.findById(req.params.noticeId);
 
         res.json(notice);
     }
