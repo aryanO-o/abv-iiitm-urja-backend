@@ -1,5 +1,5 @@
 const express = require('express');
-const { getGameInfo, createGameInfo, updateGameInfo, deleteGameInfo } = require('../../controllers/games/gameinfo');
+const { getGameInfo, createGameInfo, updateGameInfo, deleteGameInfo } = require('../../controllers/games/gameInfo');
 const {verifyToken, verifyOrganizersToken} = require('../../middlewares/authMiddlewares');
 const { getGameInfoId } = require('../../middlewares/gameInfoMIddlewares');
 const router = express.Router();
