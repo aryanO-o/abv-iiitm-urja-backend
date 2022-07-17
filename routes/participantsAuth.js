@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router(); 
 
 // getting the functions for the router middlewares form the corresponding controllers file
-const { participnatsSignIn, participnatsSignUp } = require('../controllers/participantsAuth');
+const { participnatsSignIn, participnatsSignUp } = require('../controllers/ParticipantsAuth');
 
 
 
