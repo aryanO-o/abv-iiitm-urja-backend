@@ -1,6 +1,6 @@
 const Game = require('../../models/games/Game');
 const GameInfo = require('../../models/games/GameInfo');
-const { createGameInfo, updateGameInfo, deleteGameInfo, getGameInfo } = require('./gameinfo');
+const { createGameInfo, updateGameInfo, deleteGameInfo, getGameInfo } = require('./gameInfo');
 
 exports.getAllGames = async (req, res) => {
     try{
