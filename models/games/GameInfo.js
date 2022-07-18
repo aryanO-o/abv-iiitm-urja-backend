@@ -13,6 +13,9 @@ const GameInfoSchema = new mongoose.Schema(
         },
         venue: {
             type: String,
+        },
+        inGameDetails:{
+            type: String,
         }
     }
 )

@@ -7,9 +7,10 @@ exports.createGameInfo = async (req, res) => {
         // scorer: "",
         // referee: "",
         // venue: "",
+        // inGameDetails: "",
     // }
 
-    const {date_and_time, scorer, venue,referee} = req.body;
+    const {date_and_time, scorer, venue,referee, inGameDetails} = req.body;
 
     try {
         const gameInfo = await new GameInfo(
@@ -17,7 +18,8 @@ exports.createGameInfo = async (req, res) => {
                 date_and_time: new Date(date_and_time),
                 scorer: scorer,
                 referee: referee,
-                venue: venue
+                venue: venue,
+                inGameDetails: inGameDetails,
             }
         );
         const result = await gameInfo.save();
@@ -41,8 +43,9 @@ exports.updateGameInfo = async (req, res) => {
     //     scorer: "",
     //     referee: "",
     //     venue: "",
+    //     inGameDetails: "",
     // }
-    const {date_and_time, scorer, venue,referee} = req.body;
+    const {date_and_time, scorer, venue,referee, inGameDetails} = req.body;
 
     try{
         const result = await GameInfo.findOneAndUpdate(
@@ -54,7 +57,8 @@ exports.updateGameInfo = async (req, res) => {
                     date_and_time: new Date(date_and_time),
                     scorer: scorer,
                     referee: referee,
-                    venue: venue
+                    venue: venue,
+                    inGameDetails: inGameDetails,
                 }
             },
             {
