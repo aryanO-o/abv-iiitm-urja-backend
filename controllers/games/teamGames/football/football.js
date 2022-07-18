@@ -284,3 +284,14 @@ exports.getFootballGameById = async (req, res) => {
         })
     }
 }
+
+exports.deleteFootballGame = async (req, res) => {
+    try{
+        let result = await FootballGame.findOneAndDelete({_id: req.params.eventId});
+        res.json(result);
+    }catch (err) {
+        res.status(500).json({
+            message: "mongodb error: " + err.message
+        })
+    }
+}

@@ -91,3 +91,14 @@ exports.getChessGameById = async (req, res) => {
         })
     }
 }
+
+exports.deleteChessGame = async (req, res) => {
+    try{
+        let result = await ChessGame.findOneAndDelete({_id: req.params.eventId});
+        res.json(result);
+    }catch (err) {
+        res.status(500).json({
+            message: "mongodb error: " + err.message
+        })
+    }
+}

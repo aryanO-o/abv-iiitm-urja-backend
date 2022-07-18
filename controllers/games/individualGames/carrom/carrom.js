@@ -90,3 +90,14 @@ exports.getCarromGameById = async (req, res) => {
         })
     }
 }
+
+exports.deleteCarromGame = async (req, res) => {
+    try{
+        let result = await CarromGame.findOneAndDelete({_id: req.params.eventId});
+        res.json(result);
+    }catch (err) {
+        res.status(500).json({
+            message: "mongodb error: " + err.message
+        })
+    }
+}

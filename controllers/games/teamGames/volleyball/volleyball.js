@@ -283,3 +283,14 @@ exports.getVolleyballGameById = async (req, res) => {
         })
     }
 }
+
+exports.deleteVolleyballGame = async (req, res) => {
+    try{
+        let result = await VolleyballGame.findOneAndDelete({_id: req.params.eventId});
+        res.json(result);
+    }catch (err) {
+        res.status(500).json({
+            message: "mongodb error: " + err.message
+        })
+    }
+}

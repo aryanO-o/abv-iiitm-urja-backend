@@ -283,3 +283,14 @@ exports.getSnookerGameById = async (req, res) => {
         })
     }
 }
+
+exports.deleteSnookerGame = async (req, res) => {
+    try{
+        let result = await SnookerGame.findOneAndDelete({_id: req.params.eventId});
+        res.json(result);
+    }catch (err) {
+        res.status(500).json({
+            message: "mongodb error: " + err.message
+        })
+    }
+}
