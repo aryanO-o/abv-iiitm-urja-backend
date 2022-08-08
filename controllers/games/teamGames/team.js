@@ -215,7 +215,12 @@ exports.getAllPlayersOfTeam = async (req, res) => {
 exports.getTeamById = async (req, res) => {
     try {
         const result = await Team.findById(req.params.team_id);
-        res.json(result);
+        if(!result){
+            const team = await new Team({
+                houseName: "deleted Team"
+            })
+            res.json(team);
+        }else res.json(result);
     }
     catch(err) {
         res.status(500).json({
