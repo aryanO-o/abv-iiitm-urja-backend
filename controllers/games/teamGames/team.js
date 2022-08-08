@@ -185,24 +185,39 @@ exports.getAllPlayersOfTeam = async (req, res) => {
             ObjectIdsOfTeamPlayers = team.players
         })
         // console.log(ObjectIdsOfTeamPlayers)
-        let teamPlayersIds = [];
-        const gettingTeamPlayerIds = await ObjectIdsOfTeamPlayers.forEach((player) => {
-                teamPlayersIds.push(player.toString())
-        })
- 
-        teamPlayersIds.forEach((id) => {
-            Player.find({_id: id})
-            .then((object) => {
-                playerObjects.push(object[0]); 
-                if(playerObjects.length == teamPlayersIds.length){
-                    answer = playerObjects;
-                    res.send(answer)
+        if(ObjectIdsOfTeamPlayers.length == 0){
+            const player = await new Player(
+                {
+                    jerseyNo: 0,
+                    name: `No Players Yet`
                 }
+            )
+            playerObjects.push(player);
+                // console.log(playerObjects);
+            answer = playerObjects;
+            res.send(answer)
+        }
+        else{
+            let teamPlayersIds = [];
+            const gettingTeamPlayerIds = await ObjectIdsOfTeamPlayers.forEach((player) => {
+                    teamPlayersIds.push(player.toString())
             })
-            .catch((err) => {
-                res.status(500).send(err)
-            })    
-        })
+    
+            teamPlayersIds.forEach((id) => {
+                Player.find({_id: id})
+                .then((object) => {
+                    playerObjects.push(object[0]); 
+                    if(playerObjects.length == teamPlayersIds.length){
+                        answer = playerObjects;
+                        res.send(answer)
+                    }
+                })
+                .catch((err) => {
+                    res.status(500).send(err)
+                })    
+            })
+        }
+        
         
     }
     catch(err) {
